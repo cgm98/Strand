@@ -48,7 +48,7 @@ jobs:
 
       - name: Subir artifact (Linux)
         if: matrix.platform == 'ubuntu-latest'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: strand-linux
           path: |
@@ -58,7 +58,7 @@ jobs:
 
       - name: Subir artifact (macOS, universal)
         if: matrix.platform == 'macos-latest'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: strand-macos
           path: src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
@@ -66,7 +66,7 @@ jobs:
 
       - name: Subir artifact (Windows)
         if: matrix.platform == 'windows-latest'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: strand-windows
           path: |
