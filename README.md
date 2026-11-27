@@ -4,11 +4,7 @@
 
 <h1 align="center">Strand</h1>
 
-Aplicación de notas de escritorio para Linux, local y sin cuentas en la nube. Editor Markdown en vivo (al estilo Obsidian/Notion), carpetas, enlaces `[[nota]]`, búsqueda de texto completo, adjuntos de imágenes, papelera con restauración, historial de versiones y export/import en zip.
-
-> Proyecto en desarrollo activo. Backend y frontend están migrados, con tests y CI en los dos lados; falta la prueba manual de punta a punta (abrir la app y usarla) y el empaquetado en Flatpak.
-
-Solo en español por ahora (sin librería de internacionalización): es una decisión consciente, no un olvido.
+Aplicación de notas de escritorio para Linux, local y sin cuentas en la nube. Editor Markdown en vivo (al estilo Obsidian), carpetas, enlaces `[[nota]]`, búsqueda de texto completo, adjuntos de imágenes, papelera con restauración, historial de versiones y export/import en zip.
 
 ## Características
 
@@ -20,7 +16,7 @@ Solo en español por ahora (sin librería de internacionalización): es una deci
 - **Adjuntos de imágenes** (pegar o arrastrar), servidos por un protocolo propio (`attachment://`).
 - **Papelera** para notas y carpetas, con restaurar o purgar.
 - **Historial de versiones** con snapshots automáticos.
-- **Export/import en zip**: formato propio, compatible con [Obsidian](https://obsidian.md/) y con migración directa desde una base `cogni_vault.db` previa.
+- **Export/import en zip**: formato propio, compatible con [Obsidian](https://obsidian.md/).
 - **Apariencia**: modo claro/oscuro/sistema, temas incluidos (Medianoche, Moca, Salvia, Lavanda, Alto contraste) y temas/fragmentos CSS propios del usuario.
 - **Concurrencia optimista** (OCC): avisa si una nota cambió en otro lado antes de sobrescribir.
 
@@ -35,7 +31,7 @@ Solo en español por ahora (sin librería de internacionalización): es una deci
 | Build frontend      | [Vite](https://vitejs.dev/)                                                                     |
 | Gestor de paquetes  | [bun](https://bun.sh/)                                                                          |
 
-Solo Linux. Distribución principal pensada como Flatpak (fija la versión de WebKitGTK).
+Disponible solo para Linux, distribuido como Flatpak.
 
 ## Requisitos previos
 
@@ -46,8 +42,8 @@ Solo Linux. Distribución principal pensada como Flatpak (fija la versión de We
 ## Instalación
 
 ```bash
-git clone <url-del-repositorio>
-cd notas
+git clone https://github.com/cgm98/Strand.git
+cd Strand
 bun install
 ```
 
@@ -88,15 +84,15 @@ cargo clippy --all-targets
 ### Tests y lint del frontend
 
 ```bash
-bun test              # bun test + jsdom
-bun run lint           # ESLint
-bun run format:check   # Prettier (solo verifica; usar `bun run format` para reescribir)
+bun test             # bun test + jsdom
+bun run lint          # ESLint
+bun run format:check  # Prettier (solo verifica; usar `bun run format` para reescribir)
 ```
 
 ## Estructura del proyecto
 
 ```
-notas/
+Strand/
 ├── src/                  # Frontend: Vue 3 + TypeScript
 │   ├── components/       # Editor, sidebar, diálogos, menús
 │   ├── composables/      # Lógica reutilizable (autoguardado, preferencias, etc.)
@@ -109,29 +105,13 @@ notas/
 │   │   ├── commands.rs   # Comandos invocables desde el frontend
 │   │   ├── db.rs         # Apertura de SQLite, migraciones
 │   │   ├── repo/         # Acceso a datos (notas, carpetas, etiquetas, búsqueda, papelera)
-│   │   ├── vault/        # Export/import e integración con Obsidian/cogni-vault
+│   │   ├── vault/        # Export/import e integración con Obsidian
 │   │   └── attachments.rs
 │   ├── capabilities/     # Permisos de Tauri
 │   └── packaging/        # .desktop y metainfo.xml (para el manifest de Flatpak)
 ├── .github/workflows/    # CI: cargo test/clippy + bun test/lint/format
-├── scripts/              # Generación y auditoría de temas de color
-└── pruebas/              # Datos de prueba (notas de ejemplo)
+└── scripts/              # Generación y auditoría de temas de color
 ```
-
-## Estado actual / Roadmap
-
-Hitos planeados:
-
-1. Esqueleto Tauri + IPC
-2. SQLite (XDG) + migraciones + CRUD
-3. Editor Markdown + autoguardado seguro (WAL)
-4. Búsqueda FTS5 + enlaces `[[nota]]`
-5. Tests + CI
-6. Backup/export/import
-7. Empaquetado (`.deb`, AppImage, Flatpak)
-8. Pulido + publicación en [Flathub](https://flathub.org/)
-
-Pendiente inmediato: prueba manual de punta a punta y empaquetado en Flatpak.
 
 ## Licencia
 

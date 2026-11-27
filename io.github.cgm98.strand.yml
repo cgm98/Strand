@@ -1,0 +1,97 @@
+id: io.github.cgm98.strand
+runtime: org.gnome.Platform
+runtime-version: "47"
+sdk: org.gnome.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+  - org.freedesktop.Sdk.Extension.node20
+
+command: strand
+
+# Verificar con `flatpak-builder --show-manifest` / `flatpak run` que las
+# versiones de runtime-version y de las extensiones del SDK son compatibles
+# entre sí (deben compartir la misma rama del runtime freedesktop base).
+
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  # Strand es 100% local (ver CSP en tauri.conf.json: connect-src 'self'),
+  # por eso NO se pide --share=network.
+  # El selector de archivos (tauri-plugin-dialog) usa el portal de xdg-desktop-portal,
+  # no requiere --filesystem adicional.
+  # El directorio de datos de la app (notas.db, adjuntos, temas) vive en
+  # app.path().app_data_dir(), que bajo Flatpak ya cae dentro del sandbox
+  # (~/.var/app/io.github.cgm98.strand/data), así que tampoco requiere
+  # --filesystem=home ni similares.
+
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/node20/bin
+  env:
+    CARGO_HOME: /run/build/strand/cargo
+    CARGO_NET_OFFLINE: "true"
+    npm_config_offline: "true"
+    npm_config_cache: /run/build/strand/npm-cache
+
+modules:
+  - name: strand
+    buildsystem: simple
+    build-commands:
+      # 1) Frontend: instalar dependencias node (offline, vía fuentes
+      #    generadas) y compilar con Vite. El resultado queda en dist/,
+      #    que es lo que src-tauri/tauri.conf.json espera en frontendDist.
+      - npm ci --offline
+      - npm run build
+
+      # 2) Backend: compilar el binario de Tauri (release) con las deps
+      #    de Cargo vendorizadas offline.
+      - cd src-tauri && cargo build --release --offline
+
+      # 3) Instalar binario, .desktop, metainfo e iconos.
+      - install -Dm755 src-tauri/target/release/strand /app/bin/strand
+      - install -Dm644 src-tauri/packaging/io.github.cgm98.strand.desktop
+        /app/share/applications/io.github.cgm98.strand.desktop
+      - install -Dm644 src-tauri/packaging/io.github.cgm98.strand.metainfo.xml
+        /app/share/metainfo/io.github.cgm98.strand.metainfo.xml
+      - install -Dm644 src-tauri/icons/app-icon.svg
+        /app/share/icons/hicolor/scalable/apps/io.github.cgm98.strand.svg
+      - install -Dm644 src-tauri/icons/128x128.png
+        /app/share/icons/hicolor/128x128/apps/io.github.cgm98.strand.png
+
+    sources:
+      # Para la submission real a Flathub este source debe ser el repo
+      # público con un tag de release (no un dir local):
+      #
+      #   - type: git
+      #     url: https://github.com/cgm98/Strand.git
+      #     tag: vX.Y.Z
+      #     commit: <hash completo del tag>
+      #
+      # Mientras se prueba localmente, puede usarse:
+      - type: dir
+        path: .
+
+      # === FUENTES OFFLINE (generar antes de compilar) ===
+      #
+      # 1. Cargo (Rust), desde flatpak-builder-tools:
+      #    curl -LO https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/master/cargo/flatpak-cargo-generator.py
+      #    python3 flatpak-cargo-generator.py src-tauri/Cargo.lock -o cargo-sources.json
+      #
+      #    Luego pegar aquí el contenido de cargo-sources.json como
+      #    entradas adicionales de este mismo array `sources:` (o usar
+      #    `flatpak-builder --sandbox` con el archivo externo si tu
+      #    versión de flatpak-builder soporta includes).
+      #
+      # 2. Node (frontend), desde flatpak-builder-tools:
+      #    curl -LO https://raw.githubusercontent.com/flatpak/flatpak-builder-tools/master/node/flatpak-node-generator.py
+      #    # bun.lock no es un formato soportado por el generador: generar
+      #    # un package-lock.json equivalente solo para este paso
+      #    # (npm install --package-lock-only) y correr:
+      #    python3 flatpak-node-generator.py npm package-lock.json -o node-sources.json
+      #
+      #    Igual que con cargo-sources.json, mezclar ese array en `sources:`.
+      #
+      # TODO: una vez generadas, reemplazar este bloque de comentarios por
+      # las entradas reales (listas de `type: file`/`type: archive` con
+      # url + sha256 de cada paquete).

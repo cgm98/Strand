@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- TODO antes de publicar en Flathub (hito 8): agregar <url type="homepage">
-     y al menos un <screenshot> una vez que el repositorio sea público. -->
+<!-- TODO antes de publicar en Flathub (hito 8): agregar al menos un
+     <screenshot> (necesita una captura real subida a un hosting estable). -->
 <component type="desktop-application">
   <id>io.github.cgm98.strand</id>
   <name>Strand</name>
@@ -10,6 +10,9 @@
   <developer id="io.github.cgm98">
     <name>Christian Matamoros</name>
   </developer>
+  <url type="homepage">https://github.com/cgm98/Strand</url>
+  <url type="bugtracker">https://github.com/cgm98/Strand/issues</url>
+  <url type="vcs-browser">https://github.com/cgm98/Strand</url>
   <description>
     <p>
       Aplicación de notas de escritorio para Linux, local y sin cuentas en la
@@ -30,7 +33,7 @@
   </description>
   <launchable type="desktop-id">io.github.cgm98.strand.desktop</launchable>
   <provides>
-    <binary>notas</binary>
+    <binary>strand</binary>
   </provides>
   <content_rating type="oars-1.1" />
   <releases>
