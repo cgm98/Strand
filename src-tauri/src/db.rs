@@ -132,9 +132,13 @@ pub fn open_in_memory() -> AppResult<Connection> {
 fn configure(conn: &Connection) -> AppResult<()> {
     // journal_mode devuelve una fila, por eso query_row y no execute.
     let _mode: String = conn.query_row("PRAGMA journal_mode = WAL", [], |r| r.get(0))?;
+    // NORMAL (en vez de FULL) es la recomendación oficial de SQLite para WAL:
+    // sigue siendo seguro ante un crash de la app, solo se pierde durabilidad
+    // en un corte de luz/reset en seco justo durante el commit; a cambio evita
+    // un fsync extra en cada autoguardado.
     conn.execute_batch(
         "PRAGMA foreign_keys = ON;
-         PRAGMA synchronous = FULL;
+         PRAGMA synchronous = NORMAL;
          PRAGMA busy_timeout = 5000;",
     )?;
     Ok(())
