@@ -4,7 +4,7 @@
 
 <h1 align="center">Strand</h1>
 
-Aplicación de notas de escritorio para Linux, local y sin cuentas en la nube. Editor Markdown en vivo (al estilo Obsidian), carpetas, enlaces `[[nota]]`, búsqueda de texto completo, adjuntos de imágenes, papelera con restauración, historial de versiones y export/import en zip.
+Aplicación de notas de escritorio para Linux y macOS, local y sin cuentas en la nube. Editor Markdown en vivo (al estilo Obsidian), carpetas, enlaces `[[nota]]`, búsqueda de texto completo, adjuntos de imágenes, papelera con restauración, historial de versiones y export/import en zip.
 
 ## Características
 
@@ -31,15 +31,21 @@ Aplicación de notas de escritorio para Linux, local y sin cuentas en la nube. E
 | Build frontend      | [Vite](https://vitejs.dev/)                                                                     |
 | Gestor de paquetes  | [bun](https://bun.sh/)                                                                          |
 
-Disponible solo para Linux, distribuido como Flatpak.
+Linux: distribuido como Flatpak y `.deb`. macOS: `.dmg`.
 
 ## Requisitos previos
 
 - **Rust** (edición 2024) vía [rustup](https://rustup.rs/).
 - **bun** ≥ 1.4.
-- Dependencias del sistema para Tauri 2 en Linux (WebKitGTK, etc.): seguir la [guía oficial de prerrequisitos de Tauri](https://tauri.app/start/prerequisites/).
+- Dependencias del sistema para Tauri 2: en Linux, WebKitGTK y herramientas de build; en macOS, Xcode Command Line Tools. Ver la [guía oficial de prerrequisitos de Tauri](https://tauri.app/start/prerequisites/).
 
 ## Instalación
+
+Binarios listos para usar (`.deb` para Linux, `.dmg` para macOS) en la sección [Releases](https://github.com/cgm98/Strand/releases) del repositorio.
+
+> En macOS, al no estar firmada con un certificado de Apple Developer, Gatekeeper puede marcarla como "de desarrollador no identificado". Para abrirla: clic derecho sobre la app → Abrir.
+
+### Compilar desde el código fuente
 
 ```bash
 git clone https://github.com/cgm98/Strand.git
@@ -71,7 +77,7 @@ bun run dev
 bun run tauri build
 ```
 
-Genera los binarios/instaladores (`.deb`, `AppImage`, Flatpak) en `src-tauri/target/release/bundle/`.
+Genera los binarios/instaladores para el sistema donde se ejecuta (`.deb`/`AppImage` en Linux, `.dmg`/`.app` en macOS) en `src-tauri/target/release/bundle/`.
 
 ### Tests y lint del backend (Rust)
 

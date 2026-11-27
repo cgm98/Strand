@@ -30,7 +30,7 @@
     "targets": "all",
     "category": "Productivity",
     "shortDescription": "Notas Markdown locales, sin nube",
-    "longDescription": "Aplicación de notas de escritorio para Linux. Editor Markdown en vivo, carpetas, enlaces [[nota]], búsqueda de texto completo, etiquetas, adjuntos de imágenes, papelera, historial de versiones y export/import en zip. Todo local, sin cuentas ni servicios en la nube.",
+    "longDescription": "Aplicación de notas de escritorio. Editor Markdown en vivo, carpetas, enlaces [[nota]], búsqueda de texto completo, etiquetas, adjuntos de imágenes, papelera, historial de versiones y export/import en zip. Todo local, sin cuentas ni servicios en la nube.",
     "license": "MIT",
     "licenseFile": "../LICENSE",
     "icon": [
