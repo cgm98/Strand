@@ -1,0 +1,66 @@
+/* Medianoche AAA — alto contraste sobre la paleta Medianoche: texto a 7:1 o más,
+   bordes marcados y foco chartreuse muy visible. */
+:root {
+  --bg: #ffffff;
+  --surface: #f0f6fa;
+  --surface-2: #e0e9f1;
+  --border: #435577;
+  --fg: #03102c;
+  --muted: #1f2e47;
+  --primary: #032ebb;
+  --on-primary: #ffffff;
+  --primary-soft: #d7e5ff;
+  --link: #032ebb;
+  --success: #015636;
+  --warning: #6c4302;
+  --danger: #940015;
+  --mark: #daf86a;
+  --code-fg: #334b02;
+  --focus: #0337dc;
+  --folder: #41560a;
+  --shadow: 0 0 0 2px #0f1a3a;
+  --hl-keyword: #0935b1;
+  --hl-string: #334b02;
+  --hl-number: #005256;
+  --hl-comment: #333e4d;
+  --hl-title: #4f3189;
+  --hl-attr: #6c4302;
+  color-scheme: light;
+}
+:root[data-color-scheme="dark"] {
+  --bg: #020617;
+  --surface: #050f23;
+  --surface-2: #101c34;
+  --border: #98b2c5;
+  --fg: #ffffff;
+  --muted: #d2e1ea;
+  --primary: #80c5ff;
+  --on-primary: #020617;
+  --primary-soft: #162c55;
+  --link: #9cd6fe;
+  --success: #83f2ba;
+  --warning: #fed898;
+  --danger: #ffa09c;
+  --mark: #374a08;
+  --code-fg: #ccfd51;
+  --focus: #cbfe42;
+  --folder: #c5f15d;
+  --shadow: 0 0 0 2px #ffffff;
+  --hl-keyword: #b4cffe;
+  --hl-string: #ccfd51;
+  --hl-number: #8ceaef;
+  --hl-comment: #c3d0da;
+  --hl-title: #dad0fe;
+  --hl-attr: #fed898;
+  color-scheme: dark;
+}
+/* Foco y enlaces más marcados que en las paletas normales. */
+:focus-visible {
+  outline: 3px solid var(--focus) !important;
+  outline-offset: 2px;
+}
+.cm-live-link,
+.markdown-reading a {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}

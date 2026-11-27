@@ -1,0 +1,3 @@
+[test]
+# happy-dom rompe DOMPurify (ver MIGRACION.md); se usa jsdom en su lugar.
+preload = ["./src/test/setup.ts"]

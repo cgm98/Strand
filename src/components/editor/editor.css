@@ -1,0 +1,433 @@
+/* Portado de cogni-vault (MarkdownEditor/style.css). Cambios: pestañas con
+   botones hermanos, aviso de conflicto, backlinks y variables del tema. */
+.editor-container {
+  --note-max-width: 780px;
+  container-type: inline-size;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+.editor-container.editor-wide {
+  --note-max-width: 1200px;
+}
+.editor-empty,
+.editor-closed {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px;
+  color: var(--muted);
+  height: 100%;
+}
+.mde-empty-icon {
+  opacity: 0.35;
+  stroke-width: 1;
+  margin-bottom: 20px;
+}
+.mde-empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0;
+}
+.mde-empty-subtitle {
+  font-size: 13px;
+  max-width: 360px;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+.mde-empty-hint {
+  font-size: 12px;
+  margin-top: 24px;
+}
+
+/* Pestañas */
+.editor-container .tab-bar {
+  display: flex;
+  flex-shrink: 0;
+  height: 40px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.editor-container .tab-list {
+  display: flex;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  width: 100%;
+}
+.editor-container .tab-item {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  max-width: 240px;
+  padding-right: 6px;
+  border-right: 1px solid var(--border);
+  border-top: 2px solid transparent;
+  font-size: 12px;
+  color: var(--muted);
+}
+.editor-container .tab-item:hover {
+  color: var(--fg);
+}
+.editor-container .tab-active {
+  border-top-color: var(--primary);
+  background: var(--bg);
+  color: var(--fg);
+}
+.tab-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  height: 100%;
+  padding: 0 6px 0 14px;
+}
+.tab-select:focus-visible {
+  outline-offset: -2px;
+}
+.tab-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tab-icon {
+  flex-shrink: 0;
+}
+.tab-close {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--muted);
+}
+.tab-close:hover {
+  background: var(--surface-2);
+  color: var(--fg);
+}
+.tab-save-indicator {
+  font-size: 10px;
+}
+.tab-more {
+  flex-shrink: 0;
+  align-self: center;
+  margin: 0 6px;
+}
+.tab-outline {
+  flex-shrink: 0;
+  align-self: center;
+  margin-left: 6px;
+}
+
+/* Lienzo */
+.editor-content-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* Botones flotantes para ir al inicio / al final (encima de la barra de estado,
+   a la izquierda de la barra de desplazamiento). */
+.editor-body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  min-width: 0;
+}
+.canvas-area {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+.jump-buttons {
+  position: absolute;
+  right: 22px;
+  bottom: 14px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.jump-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--muted);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+}
+.jump-btn:hover {
+  color: var(--fg);
+  background: var(--surface);
+}
+.main-canvas {
+  cursor: text;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow: auto;
+  padding: 40px clamp(20px, 5vw, 64px) 64px;
+  scrollbar-gutter: stable;
+}
+.textarea-wrapper {
+  width: 100%;
+  max-width: var(--note-max-width);
+  margin: 0 auto;
+  min-width: 0;
+}
+.editor-metadata-bar {
+  margin-bottom: 20px;
+}
+.editor-breadcrumbs {
+  margin-bottom: 14px;
+}
+.metadata-title-input,
+.note-page-title {
+  display: block;
+  width: 100%;
+  /* Con el acento del tema en vez de --fg se nota de un vistazo cuál es el
+     título entre el resto del texto; se verificó el contraste contra --bg en
+     los 6 temas (scripts/colores.py) antes de usarlo como color de texto. */
+  color: var(--primary);
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 720;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  padding: 4px 0 10px;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+.metadata-title-input {
+  resize: none;
+  field-sizing: content;
+  overflow: hidden;
+}
+.metadata-title-input:focus-visible {
+  box-shadow: 0 2px 0 var(--focus);
+}
+.metadata-title-input::placeholder {
+  color: var(--muted);
+}
+.note-page-title {
+  overflow-wrap: anywhere;
+}
+.note-properties-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 6px 0;
+}
+.note-properties-toggle:hover {
+  color: var(--fg);
+}
+.metadata-selectors {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.metadata-selectors label {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.metadata-select {
+  width: 100%;
+  min-width: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  border-radius: 5px;
+  padding: 6px 8px;
+}
+.metadata-dates {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.metadata-selectors .tag-field {
+  align-items: start;
+}
+.tag-editor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+}
+.tag-chip-list {
+  display: contents;
+}
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 4px 3px 9px;
+  background: var(--primary-soft);
+  color: var(--fg);
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.tag-chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1;
+}
+.tag-chip-remove:hover {
+  background: var(--border);
+  color: var(--fg);
+}
+.tag-input {
+  flex: 1;
+  min-width: 100px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--fg);
+  font-size: 12px;
+  padding: 4px 2px;
+}
+.tag-input::placeholder {
+  color: var(--muted);
+}
+.note-panes {
+  min-width: 0;
+}
+
+.note-save-error {
+  padding: 12px 14px;
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  color: var(--fg);
+  background: color-mix(in srgb, var(--danger) 8%, transparent);
+  font-size: 13px;
+}
+.note-save-error p {
+  margin: 0 0 10px;
+}
+.note-save-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.backlinks {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.backlinks h2 {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+.backlinks ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.backlink {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--link);
+}
+.backlink:hover {
+  background: var(--surface);
+}
+
+/* Barra de estado */
+.editor-container .status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  gap: 8px;
+  min-height: 30px;
+  padding: 5px 16px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+}
+.status-left,
+.status-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.status-mode {
+  color: var(--warning);
+}
+.status-save.saved {
+  color: var(--success);
+}
+.status-save.error,
+.tab-save-indicator.error {
+  color: var(--danger);
+}
+.status-save.dirty,
+.status-save.saving,
+.tab-save-indicator.dirty,
+.tab-save-indicator.saving {
+  color: var(--warning);
+}
+
+@container (max-width: 600px) {
+  .main-canvas {
+    padding: 24px 18px 48px;
+  }
+  .metadata-title-input,
+  .note-page-title {
+    font-size: 26px;
+  }
+  .status-left span:nth-child(2),
+  .clock-icon {
+    display: none;
+  }
+}

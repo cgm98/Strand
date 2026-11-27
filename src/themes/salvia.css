@@ -1,0 +1,56 @@
+/* Salvia — fondo hueso con tinte salvia, verde bosque para las acciones y
+   terracota como acento. Natural y sereno. */
+:root {
+  --bg: #f8f8f2;
+  --surface: #ecf2e9;
+  --surface-2: #dfeadd;
+  --border: #c9d9c9;
+  --fg: #152920;
+  --muted: #4d6055;
+  --primary: #1f634a;
+  --on-primary: #ffffff;
+  --primary-soft: #d4ebde;
+  --link: #096150;
+  --success: #49782a;
+  --warning: #94610e;
+  --danger: #b63039;
+  --mark: #f2e1a5;
+  --code-fg: #a04f27;
+  --focus: #338d6b;
+  --folder: #c67447;
+  --shadow: 0 10px 30px rgb(30 50 40 / 0.15);
+  --hl-keyword: #236c57;
+  --hl-string: #53752a;
+  --hl-number: #a6552d;
+  --hl-comment: #646f66;
+  --hl-title: #346b84;
+  --hl-attr: #8f641e;
+  color-scheme: light;
+}
+:root[data-color-scheme="dark"] {
+  --bg: #101814;
+  --surface: #17211c;
+  --surface-2: #202c26;
+  --border: #2d3c34;
+  --fg: #ebece3;
+  --muted: #a3b3a6;
+  --primary: #8ac8a6;
+  --on-primary: #101814;
+  --primary-soft: #1a3a2d;
+  --link: #94d3c1;
+  --success: #9fce85;
+  --warning: #e6bd77;
+  --danger: #ef7e7c;
+  --mark: #574d24;
+  --code-fg: #eb9a75;
+  --focus: #82d2a8;
+  --folder: #ea9b72;
+  --shadow: 0 10px 30px rgb(0 0 0 / 0.5);
+  --hl-keyword: #88cfb6;
+  --hl-string: #afd28c;
+  --hl-number: #f2a07c;
+  --hl-comment: #909c92;
+  --hl-title: #8fc7e2;
+  --hl-attr: #e3be80;
+  color-scheme: dark;
+}

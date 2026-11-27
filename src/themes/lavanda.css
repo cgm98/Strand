@@ -1,0 +1,56 @@
+/* Lavanda — neutros con matiz berenjena, lavanda digital para las acciones y
+   menta como contrapunto fresco. */
+:root {
+  --bg: #faf8fd;
+  --surface: #f3eff9;
+  --surface-2: #eae4f2;
+  --border: #dad1e6;
+  --fg: #2b1d36;
+  --muted: #635870;
+  --primary: #7048b1;
+  --on-primary: #ffffff;
+  --primary-soft: #e9e1fb;
+  --link: #683fa7;
+  --success: #267b4c;
+  --warning: #956011;
+  --danger: #ba293b;
+  --mark: #b6f4dd;
+  --code-fg: #107460;
+  --focus: #8760cb;
+  --folder: #379a7f;
+  --shadow: 0 10px 30px rgb(50 30 70 / 0.15);
+  --hl-keyword: #7048b1;
+  --hl-string: #107460;
+  --hl-number: #a14174;
+  --hl-comment: #6b6578;
+  --hl-title: #2e64a6;
+  --hl-attr: #926221;
+  color-scheme: light;
+}
+:root[data-color-scheme="dark"] {
+  --bg: #17101f;
+  --surface: #201729;
+  --surface-2: #2b2136;
+  --border: #3b2f48;
+  --fg: #f1ecf7;
+  --muted: #b7abc6;
+  --primary: #baa0f3;
+  --on-primary: #17101f;
+  --primary-soft: #392a51;
+  --link: #c5b0f6;
+  --success: #81d39f;
+  --warning: #eeba70;
+  --danger: #f47a7d;
+  --mark: #195949;
+  --code-fg: #81e0c3;
+  --focus: #77e2c2;
+  --folder: #7bd9bd;
+  --shadow: 0 10px 30px rgb(0 0 0 / 0.5);
+  --hl-keyword: #c1a6fa;
+  --hl-string: #81e0c3;
+  --hl-number: #f197c2;
+  --hl-comment: #9b94ab;
+  --hl-title: #97c1f7;
+  --hl-attr: #eabb79;
+  color-scheme: dark;
+}

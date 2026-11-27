@@ -1,0 +1,50 @@
+[package]
+name = "strand"
+version = "0.1.0"
+description = "Notas Markdown locales, sin nube"
+authors = ["Christian Matamoros"]
+edition = "2024"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+# The `_lib` suffix may seem redundant but it is necessary
+# to make the lib name unique and wouldn't conflict with the bin name.
+# This seems to be only an issue on Windows, see https://github.com/rust-lang/cargo/issues/8519
+name = "strand_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.43.0", features = ["bundled"] }
+thiserror = "2"
+uuid = { version = "1.29.3", features = ["v4"] }
+chrono = { version = "0.4.45", default-features = false, features = ["clock", "std"] }
+regex = "1.13.1"
+zip = { version = "9.7.0", default-features = false, features = ["deflate"] }
+tauri-plugin-dialog = "2"
+
+
+# Read the optimization guideline for more details: https://tauri.app/concept/size/#cargo-configuration
+# `panic` se deja en "unwind" (el valor por defecto) a propósito, no es un
+# descuido: cada comando de Tauri corre en su propia tarea async, así que un
+# panic con "unwind" solo hace fallar ese comando (el frontend ya lo muestra
+# como un error); con "abort" tumbaría toda la app y se perdería cualquier
+# nota abierta sin guardar en las demás pestañas. SQLite (WAL) ya protege el
+# archivo en disco de corrupción ante un corte a medio escribir, con
+# cualquiera de las dos opciones.
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+strip = true
+
+[dev-dependencies]
+tempfile = "3.27.0"

@@ -1,0 +1,314 @@
+/* Portado de cogni-vault. */
+.live-editor {
+  position: relative;
+  min-width: 0;
+  min-height: 40vh;
+}
+.live-editor .cm-editor {
+  background: transparent;
+  color: var(--fg);
+  font-size: 16px;
+  line-height: 1.8;
+}
+.live-editor .cm-editor.cm-focused {
+  outline: none;
+}
+.live-editor .cm-scroller {
+  font-family: inherit;
+  overflow: visible;
+  min-width: 0;
+}
+.live-editor .cm-content {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 0 140px;
+  caret-color: var(--fg);
+  min-height: 45vh;
+}
+.live-editor .cm-line {
+  padding: 2px 0;
+}
+.live-editor .cm-selectionBackground {
+  background: color-mix(in srgb, var(--primary) 25%, transparent) !important;
+}
+.live-editor .cm-cursor {
+  border-left-color: var(--fg);
+}
+.live-editor .cm-live-h1 {
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 16px 0 10px;
+}
+.live-editor .cm-live-h2 {
+  font-size: 1.55em;
+  font-weight: 650;
+  line-height: 1.35;
+  padding: 14px 0 8px;
+}
+.live-editor .cm-live-h3 {
+  font-size: 1.25em;
+  font-weight: 650;
+  line-height: 1.35;
+  padding: 10px 0 6px;
+}
+.live-editor :is(.cm-live-h4, .cm-live-h5, .cm-live-h6) {
+  font-weight: 650;
+}
+.live-editor [class*="cm-live-h"] span {
+  text-decoration: none !important;
+  color: inherit;
+}
+.cm-live-strong {
+  font-weight: 700;
+}
+.cm-live-em {
+  font-style: italic;
+}
+.cm-live-strike {
+  text-decoration: line-through;
+}
+.cm-live-code {
+  font-family: var(--font-mono);
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 1px 3px;
+}
+.live-editor .cm-live-link {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.live-editor .cm-live-quote {
+  border-left: 3px solid var(--primary);
+  padding-left: 16px;
+  color: var(--muted);
+}
+.cm-list-bullet {
+  display: inline-block;
+  width: 0.65em;
+  color: var(--muted);
+}
+.cm-live-preview {
+  position: relative;
+  padding: 4px 0;
+  margin: 8px 0 18px;
+  min-width: 0;
+  white-space: normal;
+}
+.cm-live-preview pre {
+  margin-top: 0;
+}
+/* Tarjeta de bloque de código estilo chat: cabecera + <pre> fundidos en un solo
+   recuadro (el borde/radio pasa de .markdown-reading pre a la tarjeta misma). */
+.cm-live-preview.cm-code-card {
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.cm-code-card > .cm-block-header {
+  border-bottom: 1px solid var(--border);
+}
+.cm-live-preview.cm-code-card pre {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+}
+/* Misma tarjeta que el código, para que una fórmula en bloque ($$…$$) deje de ser
+   un botón suelto bajo el KaTeX renderizado y tenga cabecera (copiar LaTeX,
+   editar, eliminar) consistente con código y mermaid. */
+.cm-live-preview.cm-math-card {
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.cm-math-card > .cm-block-header {
+  border-bottom: 1px solid var(--border);
+}
+.cm-math-card .note-math {
+  margin: 0;
+}
+/* El separador no lleva botón de editar (ver liveDecorations.ts): clic directo
+   en la línea. Sin esto hereda el margin:2em de .markdown-reading hr (pensado
+   para la vista de lectura) y el bloque queda enorme y vacío en el editor. */
+.cm-live-preview.cm-rule-preview {
+  margin: 10px 0;
+  padding: 0;
+  cursor: pointer;
+}
+.cm-live-preview.cm-rule-preview hr {
+  margin: 0;
+}
+.cm-live-inline {
+  cursor: text;
+}
+/* La fórmula inline ($…$) no tenía ninguna pista de que es editable (a diferencia
+   del código inline, que ya se ve resaltado). Un subrayado punteado discreto que
+   se afirma al pasar el ratón evita que parezca texto suelto. */
+.cm-live-math-inline {
+  border-bottom: 1px dashed var(--border);
+  border-radius: 2px;
+  transition: background-color 0.1s ease;
+}
+.cm-live-math-inline:hover {
+  background: var(--surface);
+  border-bottom-color: var(--primary);
+}
+.cm-live-inline img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+.live-editor .cm-tooltip {
+  background: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--border);
+}
+.live-editor .cm-tooltip-autocomplete ul li[aria-selected] {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.live-editor input[type="checkbox"] {
+  margin: 0 6px 0 0;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+/* Mismo tamaño/tipografía/radio que .markdown-reading pre (document.css), para que
+   el bloque no cambie de aspecto al entrar o salir del modo edición. */
+.live-editor .cm-line.cm-live-code-line {
+  font-family: var(--font-mono);
+  background: var(--surface);
+  font-size: 13px;
+  line-height: 1.7;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+.live-editor .cm-line.cm-live-code-edge-top {
+  border-top: 1px solid var(--border);
+  border-radius: 8px 8px 0 0;
+  margin-top: 4px;
+}
+.live-editor .cm-line.cm-live-code-edge-bottom {
+  border-bottom: 1px solid var(--border);
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 4px;
+}
+/* Líneas de cerco (```lang y ```): quedan editables pero atenuadas, para que no
+   compitan visualmente con el contenido ni se lean como un error. */
+.live-editor .cm-line.cm-live-code-fence {
+  color: var(--muted);
+  opacity: 0.8;
+}
+.live-editor-source .cm-editor {
+  font-size: 14px;
+}
+.live-editor-source .cm-scroller {
+  font-family: var(--font-mono);
+}
+
+/* ---------- Edición sin modos (Obsidian/Notion) ---------- */
+.live-editor .cm-activeLine {
+  background: transparent;
+}
+.live-editor .cm-line {
+  position: relative;
+}
+/* Ayuda en la línea vacía con el cursor, como en Notion. */
+.live-editor .cm-focused .cm-activeLine:has(> br:only-child)::before {
+  content: "Escribe «/» para insertar…";
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+  opacity: 0.7;
+  pointer-events: none;
+}
+.line-plus {
+  position: absolute;
+  left: -34px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  color: var(--muted);
+  opacity: 0.75;
+}
+.line-plus:hover,
+.line-plus:focus-visible {
+  opacity: 1;
+  color: var(--fg);
+  background: var(--surface-2);
+}
+.format-bubble {
+  position: fixed;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+.format-bubble button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  border-radius: 5px;
+  color: var(--fg);
+}
+.format-bubble button:hover {
+  background: var(--surface-2);
+}
+.format-bubble .bubble-text {
+  font-size: 12px;
+  color: var(--muted);
+}
+.bubble-sep {
+  width: 1px;
+  height: 18px;
+  margin: 0 3px;
+  background: var(--border);
+}
+.live-editor .cm-tooltip-autocomplete {
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 4px;
+}
+.live-editor .cm-tooltip-autocomplete > ul {
+  font-family: var(--font-sans);
+  max-height: 320px;
+}
+.live-editor .cm-tooltip-autocomplete > ul > li {
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+.live-editor .cm-completionDetail {
+  margin-left: 12px;
+  font-style: normal;
+  color: var(--muted);
+  font-size: 12px;
+}
+.live-editor .cm-tooltip-autocomplete ul li[aria-selected] .cm-completionDetail {
+  color: inherit;
+  opacity: 0.85;
+}
+@media (max-width: 700px) {
+  .line-plus {
+    display: none;
+  }
+}

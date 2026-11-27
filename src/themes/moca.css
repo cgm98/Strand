@@ -1,0 +1,56 @@
+/* Moca — neutros cálidos «mocha mousse» y crema, ciruela para las acciones y
+   oro viejo como acento. Elegante y tranquilo para leer mucho rato. */
+:root {
+  --bg: #faf6f0;
+  --surface: #f5eee5;
+  --surface-2: #eee2d7;
+  --border: #dfcdbf;
+  --fg: #33221a;
+  --muted: #6e584c;
+  --primary: #81315c;
+  --on-primary: #ffffff;
+  --primary-soft: #f6e1ea;
+  --link: #7a2b56;
+  --success: #3b723e;
+  --warning: #915c08;
+  --danger: #b02a2d;
+  --mark: #fadb90;
+  --code-fg: #7f513c;
+  --focus: #a1790c;
+  --folder: #a97e2c;
+  --shadow: 0 10px 30px rgb(60 40 25 / 0.16);
+  --hl-keyword: #873761;
+  --hl-string: #46703d;
+  --hl-number: #8d5d1c;
+  --hl-comment: #75655b;
+  --hl-title: #7f513c;
+  --hl-attr: #296b88;
+  color-scheme: light;
+}
+:root[data-color-scheme="dark"] {
+  --bg: #1b1410;
+  --surface: #251c17;
+  --surface-2: #312620;
+  --border: #43352d;
+  --fg: #efe6db;
+  --muted: #b9a798;
+  --primary: #db91b4;
+  --on-primary: #1b1410;
+  --primary-soft: #462836;
+  --link: #eba6c6;
+  --success: #88c28a;
+  --warning: #e7b369;
+  --danger: #f07f77;
+  --mark: #5f4a1a;
+  --code-fg: #e2bf76;
+  --focus: #e8be62;
+  --folder: #e1b767;
+  --shadow: 0 10px 30px rgb(0 0 0 / 0.5);
+  --hl-keyword: #e297ba;
+  --hl-string: #99c68f;
+  --hl-number: #e7b375;
+  --hl-comment: #a49589;
+  --hl-title: #e2bf76;
+  --hl-attr: #88c0dc;
+  color-scheme: dark;
+}

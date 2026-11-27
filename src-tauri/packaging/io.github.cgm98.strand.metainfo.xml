@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO antes de publicar en Flathub (hito 8): agregar <url type="homepage">
+     y al menos un <screenshot> una vez que el repositorio sea público. -->
+<component type="desktop-application">
+  <id>io.github.cgm98.strand</id>
+  <name>Strand</name>
+  <summary>Notas Markdown locales, sin nube</summary>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <developer id="io.github.cgm98">
+    <name>Christian Matamoros</name>
+  </developer>
+  <description>
+    <p>
+      Aplicación de notas de escritorio para Linux, local y sin cuentas en la
+      nube. Editor Markdown en vivo (al estilo Obsidian/Notion), carpetas,
+      enlaces [[nota]], búsqueda de texto completo, etiquetas, adjuntos de
+      imágenes, papelera con restauración, historial de versiones y
+      exportación/importación en zip.
+    </p>
+    <ul>
+      <li>Editor Markdown en vivo: tablas, Mermaid y fórmulas (KaTeX)</li>
+      <li>Carpetas, enlaces [[nota]] y backlinks</li>
+      <li>Búsqueda de texto completo</li>
+      <li>Etiquetas</li>
+      <li>Papelera con restauración e historial de versiones</li>
+      <li>Export/import en zip, compatible con Obsidian</li>
+      <li>Modo claro/oscuro/sistema y temas con contraste auditado (AA/AAA)</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">io.github.cgm98.strand.desktop</launchable>
+  <provides>
+    <binary>notas</binary>
+  </provides>
+  <content_rating type="oars-1.1" />
+  <releases>
+    <release version="0.1.0" date="2026-11-19" type="development" />
+  </releases>
+</component>

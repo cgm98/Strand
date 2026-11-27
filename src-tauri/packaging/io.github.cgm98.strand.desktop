@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Strand
+GenericName=Editor de notas
+Comment=Notas Markdown locales, sin nube
+Exec=notas
+Icon=io.github.cgm98.strand
+Terminal=false
+Categories=Office;TextEditor;
+Keywords=strand;notas;markdown;nota;editor;
+StartupWMClass=notas

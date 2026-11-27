@@ -1,0 +1,57 @@
+/* Medianoche — azul marino, azul hielo, azul eléctrico y un toque de chartreuse.
+   Reparto 60-30-10: marino/hielo de base, azul eléctrico para las acciones y
+   chartreuse solo en detalles (foco, código, carpetas). */
+:root {
+  --bg: #f6fbfe;
+  --surface: #ecf4fa;
+  --surface-2: #dee9f3;
+  --border: #cad8e6;
+  --fg: #0f1e3b;
+  --muted: #4b5c74;
+  --primary: #1e56ea;
+  --on-primary: #ffffff;
+  --primary-soft: #dae7fe;
+  --link: #174bd7;
+  --success: #067d51;
+  --warning: #996103;
+  --danger: #be2d39;
+  --mark: #d6f978;
+  --code-fg: #4d7002;
+  --focus: #3a74ff;
+  --folder: #719507;
+  --shadow: 0 10px 30px rgb(15 30 70 / 0.16);
+  --hl-keyword: #2456d3;
+  --hl-string: #4d7002;
+  --hl-number: #02787d;
+  --hl-comment: #5e6a7a;
+  --hl-title: #6451ac;
+  --hl-attr: #0e7397;
+  color-scheme: light;
+}
+:root[data-color-scheme="dark"] {
+  --bg: #071125;
+  --surface: #0c1930;
+  --surface-2: #15233e;
+  --border: #23334f;
+  --fg: #e2f1fa;
+  --muted: #9eb5c5;
+  --primary: #5d94ff;
+  --on-primary: #071125;
+  --primary-soft: #132b5a;
+  --link: #71bfff;
+  --success: #64c897;
+  --warning: #ebb25f;
+  --danger: #f47a79;
+  --mark: #41560a;
+  --code-fg: #c4f252;
+  --focus: #c3f344;
+  --folder: #bfeb56;
+  --shadow: 0 10px 30px rgb(0 0 0 / 0.5);
+  --hl-keyword: #7caafe;
+  --hl-string: #bfeb56;
+  --hl-number: #6bd8de;
+  --hl-comment: #8ea1b4;
+  --hl-title: #7bd0f9;
+  --hl-attr: #b6adf3;
+  color-scheme: dark;
+}

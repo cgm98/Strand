@@ -1,0 +1,65 @@
+/* Alto contraste — texto y bordes al máximo y foco muy visible (WCAG AAA). */
+:root {
+  --bg: #ffffff;
+  --surface: #f2f2f2;
+  --surface-2: #e0e0e0;
+  --border: #4d4d4d;
+  --fg: #000000;
+  --muted: #262626;
+  --primary: #1a0dab;
+  --on-primary: #ffffff;
+  --primary-soft: #dcdcff;
+  --link: #1a0dab;
+  --success: #004d00;
+  --warning: #5c3700;
+  --danger: #a30000;
+  --mark: #ffff00;
+  --code-fg: #4b0082;
+  --focus: #024dd6;
+  --shadow: 0 0 0 2px #000000;
+  --hl-keyword: #4b0082;
+  --hl-string: #004d00;
+  --hl-number: #5c3700;
+  --hl-comment: #333333;
+  --hl-title: #1a0dab;
+  --hl-attr: #6b2000;
+  --folder: #653e01;
+  color-scheme: light;
+}
+:root[data-color-scheme="dark"] {
+  --bg: #000000;
+  --surface: #0f0f0f;
+  --surface-2: #262626;
+  --border: #bfbfbf;
+  --fg: #ffffff;
+  --muted: #e6e6e6;
+  --primary: #ffd400;
+  --on-primary: #000000;
+  --primary-soft: #3d3300;
+  --link: #8cc8ff;
+  --success: #7dff7d;
+  --warning: #ffa659;
+  --danger: #ff8080;
+  --mark: #665500;
+  --code-fg: #e5b8ff;
+  --focus: #ffd400;
+  --shadow: 0 0 0 2px #ffffff;
+  --hl-keyword: #e5b8ff;
+  --hl-string: #7dff7d;
+  --hl-number: #ffd27d;
+  --hl-comment: #cccccc;
+  --hl-title: #8cc8ff;
+  --hl-attr: #ffd400;
+  --folder: #fcd180;
+  color-scheme: dark;
+}
+/* Foco y enlaces más marcados que en el resto de temas. */
+:focus-visible {
+  outline: 3px solid var(--focus) !important;
+  outline-offset: 2px;
+}
+.cm-live-link,
+.markdown-reading a {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
