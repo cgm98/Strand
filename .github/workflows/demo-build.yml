@@ -23,6 +23,10 @@ jobs:
       - name: Rust estable
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Targets de macOS (build universal Intel + Apple Silicon)
+        if: matrix.platform == 'macos-latest'
+        run: rustup target add aarch64-apple-darwin x86_64-apple-darwin
+
       - name: Cache de cargo
         uses: Swatinem/rust-cache@v2
         with:
@@ -34,8 +38,13 @@ jobs:
       - name: Instalar dependencias del frontend
         run: bun install --frozen-lockfile
 
-      - name: Build (release)
+      - name: Build (release, Linux/Windows)
+        if: matrix.platform != 'macos-latest'
         run: bun run tauri build
+
+      - name: Build (release, macOS universal)
+        if: matrix.platform == 'macos-latest'
+        run: bun run tauri build -- --target universal-apple-darwin
 
       - name: Subir artifact (Linux)
         if: matrix.platform == 'ubuntu-latest'
@@ -47,12 +56,12 @@ jobs:
             src-tauri/target/release/bundle/appimage/*.AppImage
           retention-days: 7
 
-      - name: Subir artifact (macOS)
+      - name: Subir artifact (macOS, universal)
         if: matrix.platform == 'macos-latest'
         uses: actions/upload-artifact@v4
         with:
           name: strand-macos
-          path: src-tauri/target/release/bundle/dmg/*.dmg
+          path: src-tauri/target/universal-apple-darwin/release/bundle/dmg/*.dmg
           retention-days: 7
 
       - name: Subir artifact (Windows)

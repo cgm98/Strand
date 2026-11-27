@@ -15,7 +15,8 @@ jobs:
           - platform: ubuntu-latest
             args: ""
           - platform: macos-latest
-            args: ""
+            # Build universal: corre tanto en Mac Intel como Apple Silicon.
+            args: "--target universal-apple-darwin"
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -29,6 +30,10 @@ jobs:
 
       - name: Rust estable
         uses: dtolnay/rust-toolchain@stable
+
+      - name: Targets de macOS (build universal Intel + Apple Silicon)
+        if: matrix.platform == 'macos-latest'
+        run: rustup target add aarch64-apple-darwin x86_64-apple-darwin
 
       - name: Cache de cargo
         uses: Swatinem/rust-cache@v2
