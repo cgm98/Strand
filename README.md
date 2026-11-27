@@ -6,9 +6,9 @@
 
 Aplicación de notas de escritorio para Linux, local y sin cuentas en la nube. Editor Markdown en vivo (al estilo Obsidian/Notion), carpetas, enlaces `[[nota]]`, búsqueda de texto completo, adjuntos de imágenes, papelera con restauración, historial de versiones y export/import en zip.
 
-> Proyecto en desarrollo activo. Backend y frontend están migrados, con tests y CI en los dos lados; falta la prueba manual de punta a punta (abrir la app y usarla) y el empaquetado en Flatpak. Ver [MIGRACION.md](./MIGRACION.md) para el detalle de estado y pendientes.
+> Proyecto en desarrollo activo. Backend y frontend están migrados, con tests y CI en los dos lados; falta la prueba manual de punta a punta (abrir la app y usarla) y el empaquetado en Flatpak.
 
-Solo en español por ahora (sin librería de internacionalización): es una decisión consciente, no un olvido — ver MIGRACION.md si se reconsidera más adelante.
+Solo en español por ahora (sin librería de internacionalización): es una decisión consciente, no un olvido.
 
 ## Características
 
@@ -115,8 +115,7 @@ notas/
 │   └── packaging/        # .desktop y metainfo.xml (para el manifest de Flatpak)
 ├── .github/workflows/    # CI: cargo test/clippy + bun test/lint/format
 ├── scripts/              # Generación y auditoría de temas de color
-├── pruebas/              # Datos de prueba (notas de ejemplo)
-└── MIGRACION.md          # Historial y pendientes de la migración
+└── pruebas/              # Datos de prueba (notas de ejemplo)
 ```
 
 ## Estado actual / Roadmap
@@ -132,7 +131,7 @@ Hitos planeados:
 7. Empaquetado (`.deb`, AppImage, Flatpak)
 8. Pulido + publicación en [Flathub](https://flathub.org/)
 
-Pendiente inmediato: ver la sección "Hoja de ruta restante" de [MIGRACION.md](./MIGRACION.md).
+Pendiente inmediato: prueba manual de punta a punta y empaquetado en Flatpak.
 
 ## Licencia
 
