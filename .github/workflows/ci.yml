@@ -12,11 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: cargo-audit (vulnerabilidades conocidas en Cargo.lock)
-        uses: rustsec/audit-check@v2
+      - name: Instalar cargo-audit
+        uses: taiki-e/install-action@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          file: src-tauri/Cargo.lock
+          tool: cargo-audit
+
+      - name: cargo-audit (vulnerabilidades conocidas en Cargo.lock)
+        working-directory: src-tauri
+        run: cargo audit
 
       - name: cargo-deny (advisories, licencias, bans, sources)
         uses: EmbarkStudios/cargo-deny-action@v2

@@ -22,14 +22,14 @@ Desktop notes app for Linux and macOS, local-first and cloud-free. Live Markdown
 
 ## Tech stack
 
-| Layer           | Technology                                                                           |
-| --------------- | ------------------------------------------------------------------------------------- |
-| Desktop shell   | [Tauri 2](https://tauri.app/)                                                        |
+| Layer           | Technology                                                                                       |
+| --------------- | ------------------------------------------------------------------------------------------------ |
+| Desktop shell   | [Tauri 2](https://tauri.app/)                                                                    |
 | Backend         | Rust (2024 edition), [rusqlite](https://github.com/rusqlite/rusqlite) with embedded SQLite (WAL) |
-| Frontend        | [Vue 3](https://vuejs.org/) + TypeScript + [Pinia](https://pinia.vuejs.org/)         |
-| Editor          | [CodeMirror 6](https://codemirror.net/)                                             |
-| Frontend build  | [Vite](https://vitejs.dev/)                                                          |
-| Package manager | [bun](https://bun.sh/)                                                               |
+| Frontend        | [Vue 3](https://vuejs.org/) + TypeScript + [Pinia](https://pinia.vuejs.org/)                     |
+| Editor          | [CodeMirror 6](https://codemirror.net/)                                                          |
+| Frontend build  | [Vite](https://vitejs.dev/)                                                                      |
+| Package manager | [bun](https://bun.sh/)                                                                           |
 
 Linux: distributed as Flatpak and `.deb`. macOS: `.dmg`.
 
