@@ -6,6 +6,23 @@ on:
   pull_request:
 
 jobs:
+  security:
+    name: Seguridad (cargo-audit + cargo-deny)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: cargo-audit (vulnerabilidades conocidas en Cargo.lock)
+        uses: rustsec/audit-check@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          file: src-tauri/Cargo.lock
+
+      - name: cargo-deny (advisories, licencias, bans, sources)
+        uses: EmbarkStudios/cargo-deny-action@v2
+        with:
+          manifest-path: src-tauri/Cargo.toml
+
   backend:
     name: Backend (Rust)
     runs-on: ubuntu-latest
