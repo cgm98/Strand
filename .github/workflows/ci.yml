@@ -10,7 +10,7 @@ jobs:
     name: Seguridad (cargo-audit + cargo-deny)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Instalar cargo-audit
         uses: taiki-e/install-action@v2
@@ -30,7 +30,7 @@ jobs:
     name: Backend (Rust)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Dependencias de sistema de Tauri
         run: |
@@ -59,7 +59,7 @@ jobs:
     name: Frontend (Vue + TypeScript)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Instalar Bun
         uses: oven-sh/setup-bun@v2
